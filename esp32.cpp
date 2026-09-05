@@ -34,9 +34,19 @@ void setup() {
     Serial.println(responseCode);
 
     Serial.println(http.getString());
-
-    http.end();
 }
 
 void loop() {
+    // every 10 seconds, send data
+    int counter = 0;
+    
+    String json = R"({
+        "counter": )" + String(counter) + "}";
+
+    int responseCode = http.POST(json);
+
+    Serial.print("Response: ");
+    Serial.println(responseCode);
+
+    Serial.println(http.getString());
 }
